@@ -1,6 +1,9 @@
 .edltleft-nav {
-	width: 200px;
+	width: 230px;
+	height: 100%;
 	float: left;
+	display: flex;
+	flex-direction: column;
 	ul {
 		li {
 			padding-left: 15px;
@@ -10,11 +13,21 @@
 			border-left: 1px solid #ccc; 
 		}
 	}
+	
+	.rst__rowWrapper {
+		padding: 5px 0;
+	}
+	.rst__moveHandle, .rst__loadingHandle {
+		width: 30px;
+	}
+	.rst__collapseButton, .rst__expandButton {
+		width: 10px;
+		height: 10px;
+	}
+	.rst__collapseButton:hover:not(:active), .rst__expandButton:hover:not(:active) {
+	    background-size: 24px;
+	    height: 12px;
+	    width: 12px;
+	}
 }
 
-.rst__rowWrapper {
-	padding: 5px 0;
-}
-.rst__moveHandle, .rst__loadingHandle {
-	width: 30px;
-}

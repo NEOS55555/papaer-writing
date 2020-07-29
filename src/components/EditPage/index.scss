@@ -1,8 +1,6 @@
 .editpage-wrapper {
+	height: 100%;
 	/*display: flex;*/
-	.test {
-		float: left;
-	}
 	&::after {
 		content: '';
 		display: block;
@@ -10,12 +8,12 @@
 	}
 	.editor-wrapper {
 		overflow: hidden;
-		.editor-container {
-			overflow: hidden;
-		}
+		height: 100%;
+		
 		.search-content {
-			width: 320px;
+			width: 420px;
 			float: right;
+			padding: 10px;
 		}
 	}
 }

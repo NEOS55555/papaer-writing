@@ -1,6 +1,6 @@
 import React, { Component, createRef } from 'react';
 import { connect } from 'react-redux';
-import { Button, Select, Input } from 'antd';
+import { Button, Select, Input, message } from 'antd';
 import BraftEditor from 'braft-editor'
 import CodeHighlighter from 'braft-extensions/dist/code-highlighter'
 import ColorPicker from 'braft-extensions/dist/color-picker'
@@ -9,7 +9,7 @@ import rangy from 'rangy'
 import $ from 'jquery'
 
 import { updateEditorData } from '@/store/actions'
-import { html2list } from '@/common'
+import { html2list, eventBus } from '@/common'
 
 import Toolbar from './Toolbar/index.js'
 import { ContentUtils } from 'braft-utils'
@@ -68,6 +68,7 @@ class Index extends Component {
 
     // 因为有个拖拽功能，所以数据不可能这么写，应该是
     if (!this.currentSelect) {      // 这里可以往最后面添加
+      message.error('请选择要插入的位置！')
       return;
     }
 
@@ -81,6 +82,7 @@ class Index extends Component {
     
   }
 	componentDidMount () {
+    eventBus.on('insertOneDataToEditor', this.insertOneData)
     Toolbar.setClick(this.barClick)
 	}
   
@@ -144,6 +146,7 @@ class Index extends Component {
   componentWillUnmount () {
     $(document).off('mouseup.editortip')
     $('.public-DraftEditor-content').off('mouseup.editortip')
+    eventBus.off('insertOneDataToEditor')
   }
   // isShowBar = true;
 	renderEditorTip = ctnNode => {
@@ -204,22 +207,24 @@ class Index extends Component {
     const { chapterListEditor, isSort } = this.props;
 		return (
 			<div className="editor-container" >
-				{/*<Toolbar className="hide" ref={this.toolbar} onClick={this.barClick} />
-				<div id="toolbar" ref={this.toolbar} >asdfasadgsd</div>*/}
 				<BraftEditor 
           disabled={isSort}
+          className="xz-editor"
+          contentClassName="xz-editor-content"
 					excludeControls={excludeControls}
 					ref={this.renderEditorTip} 
 					value={chapterListEditor} 
           onChange={this.editorChange}
 				/>
-        <Button onClick={this.insertOneData}>插入一条数据</Button>
-        <Button onClick={() => {
-          console.log(chapterListEditor.toHTML(), chapterListEditor.toRAW(true))
-          console.log(this.props.chapterList)
-          // console.log(BraftEditor.createEditorState(chapterListEditor.toRAW(true)).toHTML())
+        <div className="test">
+          <Button onClick={this.insertOneData}>插入一条数据</Button>
+          <Button onClick={() => {
+            console.log(chapterListEditor.toHTML(), chapterListEditor.toRAW(true))
+            console.log(this.props.chapterList)
+            // console.log(BraftEditor.createEditorState(chapterListEditor.toRAW(true)).toHTML())
 
-        }}>获取数据</Button>
+          }}>获取数据</Button>
+        </div>
 			</div>
 		)
 	}

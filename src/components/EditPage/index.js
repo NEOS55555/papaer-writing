@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Select, Input } from 'antd';
 import Editor from '@/components/Editor'
 import EditLeftNav from '@/components/EditLeftNav'
+import SearchComp from '@/components/SearchComp'
 // import {  } from '@/store/actions'
 import './index.scss'
 
@@ -16,7 +17,7 @@ class Index extends Component {
 			<div className="editpage-wrapper">
 				<EditLeftNav />
 				<div className="editor-wrapper">
-					<div className="search-content">12312313</div>
+					<SearchComp />
 					<Editor />
 				</div>
 			</div>

@@ -1,10 +1,16 @@
-$labelWidth: 100px;
+h1, h2, h3, h4, h5, h6 {
+	margin-bottom: 0;
+}
 p, ul {
 	margin: 0;
 }
 
+$labelWidth: 100px;
 .hide {
 	display: none!important;
+}
+.keywrod {
+	color: #4a25ba;
 }
 
 .self-wrapper {

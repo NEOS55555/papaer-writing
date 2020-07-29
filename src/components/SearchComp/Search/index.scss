@@ -1,0 +1,41 @@
+.search-list-wrapper {
+	.title {
+		font-weight: bold;
+	}
+	.search-list {
+		li {
+			box-shadow: 1px 1px 11px #ccc;
+			padding: 10px;
+			.sub-text {
+				color: #9b9b9b;
+				padding: 5px 0;
+
+				span:not(:last-child) {
+					margin-right: 5px;
+				}
+			}
+
+			.text-ctn {
+				display: flex;
+				align-items: flex-start;
+				img {
+					float: right;
+					width: 120px;
+					height: 80px;
+				}
+				/* .text {
+					float: left;
+				}
+				&::after {
+					content: '';
+					display: block;
+					clear: both;
+				} */
+			}
+
+			&:not(:last-child) {
+				margin-bottom: 15px;
+			}
+		}
+	}
+}

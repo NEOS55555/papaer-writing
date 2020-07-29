@@ -86,12 +86,12 @@ class Index extends Component {
 		return (
 			<div className="edltleft-nav">
 				<p className="title">目录</p>
-				<div style={{ height: 600 }}>
-					<Button onClick={() => updateEditorData({ isSort: !isSort })} >{isSort ? '确定' : '排序'}</Button>
+				<Button onClick={() => updateEditorData({ isSort: !isSort })} >{isSort ? '确定' : '排序'}</Button>
+				<div style={{ height: '100%' }}>
 					{
 						isSort 
 						?	<SortableTree
-								scaffoldBlockPxWidth={10}
+								scaffoldBlockPxWidth={15}
 								rowHeight={40}
 			          treeData={chapterListfForTree}
 			          // onDragStateChanged={a => console.log(a)}

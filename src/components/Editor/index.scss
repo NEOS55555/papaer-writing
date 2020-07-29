@@ -30,8 +30,24 @@
 		border-top-color: #080808;
 	}
 }
-.bf-content {
+.xz-editor {
+	display: flex;
+	flex-direction: column;
+
+	.xz-editor-content {
+		position: relative;
+		height: 100%;
+	}
+}
+.editor-container {
+	height: 100%;
+	overflow: hidden;
 	position: relative;
+}
+.test {
+	position: absolute;
+	z-index: 5;
+	bottom: 0;
 }
 
 /* .split {
