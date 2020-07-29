@@ -1,0 +1,20 @@
+.chapter-plan-wrapper {
+	.plan-header {
+		display: flex;
+		.plan-item {
+			display: flex;
+			.input {
+				width: 200px;
+			}
+		}
+	}
+
+	.plan-body {
+		display: flex;
+
+	}
+}
+
+.paln-box {
+	width: 33%;
+}

@@ -1,0 +1,28 @@
+$labelWidth: 100px;
+p, ul {
+	margin: 0;
+}
+
+.hide {
+	display: none!important;
+}
+
+.self-wrapper {
+	.self-line {
+		display: flex;
+		flex-direction: row;
+		margin-bottom: 15px;
+
+		.prev-txt {
+			display: inline-block;
+			width: $labelWidth;
+			text-align: right;
+		}
+		.input {
+			width: 254px;
+		}
+	}
+	.self-footer {
+		padding-left: $labelWidth;
+	}
+}

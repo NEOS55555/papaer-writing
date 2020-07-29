@@ -1,0 +1,21 @@
+.editpage-wrapper {
+	/*display: flex;*/
+	.test {
+		float: left;
+	}
+	&::after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+	.editor-wrapper {
+		overflow: hidden;
+		.editor-container {
+			overflow: hidden;
+		}
+		.search-content {
+			width: 320px;
+			float: right;
+		}
+	}
+}

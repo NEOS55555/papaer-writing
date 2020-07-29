@@ -1,0 +1,39 @@
+#toolbar {
+	position: absolute;
+	color: #fff;
+	z-index: 3;
+	border-radius: 4px;
+	background: #000;
+	white-space: nowrap;
+	ul {
+		display: flex;
+		li {
+			padding: 5px 8px;
+			cursor: pointer;
+			&:not(:last-child) {
+				border-right: 1px solid #ccc;
+			}
+			&:hover {
+				background-color: #540CBC;
+			} 
+		}
+	}
+
+	&::after {
+	    content: "";
+		position: absolute;
+		top: 100%;
+		left: calc(50% - 3px);
+		width: 0;
+		height: 0;
+		border: 6px solid transparent;
+		border-top-color: #080808;
+	}
+}
+.bf-content {
+	position: relative;
+}
+
+/* .split {
+	display: none;
+} */
