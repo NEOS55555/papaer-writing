@@ -82,7 +82,6 @@ class Index extends Component {
 	render () {
 		// const { isSort } =  this.state;
 		const { isSort, chapterListfForTree, updateEditorData, updateChapterList, updateEditorEdit } = this.props;
-		console.log(chapterListfForTree)
 		return (
 			<div className="edltleft-nav">
 				<p className="title">目录</p>

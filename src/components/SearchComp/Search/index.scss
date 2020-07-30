@@ -6,6 +6,26 @@
 		li {
 			box-shadow: 1px 1px 11px #ccc;
 			padding: 10px;
+
+			.link-wrapper {
+				margin: 5px 0;
+				a {
+					&::before {
+						content: '#';
+					}
+				}
+				a:not(:last-child) {
+					margin-right: 5px;
+				}
+			}
+			.oper {
+				border-top: 1px solid #ccc;
+				display: flex;
+
+				button {
+					width: 50%;
+				}
+			}
 			.sub-text {
 				color: #9b9b9b;
 				padding: 5px 0;

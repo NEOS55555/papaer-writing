@@ -9,6 +9,7 @@ import rangy from 'rangy'
 import $ from 'jquery'
 
 import { updateEditorData } from '@/store/actions'
+import { dispatchSearchList } from '@/store/actions'
 import { html2list, eventBus } from '@/common'
 
 import Toolbar from './Toolbar/index.js'
@@ -64,7 +65,11 @@ class Index extends Component {
 	toolbar = createRef(null);
 	selectedRang = null;
   // <p class="split">---</p>  // 分割线
-  insertOneData = () => {
+  insertOneData = (text) => {
+    if (!text || typeof text !== 'string') {
+      message.error('请选择要插入的内容！')
+      return
+    }
 
     // 因为有个拖拽功能，所以数据不可能这么写，应该是
     if (!this.currentSelect) {      // 这里可以往最后面添加
@@ -73,7 +78,7 @@ class Index extends Component {
     }
 
     this.props.updateEditorData({
-      chapterListEditor: ContentUtils.insertHTML(this.props.chapterListEditor, '<p><p>我是插入的</p><p>我是插入的2</p>', this.currentSelect)
+      chapterListEditor: ContentUtils.insertHTML(this.props.chapterListEditor, `<br /><p>${text}</p>`, this.currentSelect)
     })
     /*this.setState({
       editorState: ContentUtils.insertHTML(this.state.editorState, '<p><p>我是插入的</p><p>我是插入的2</p>', this.currentSelect)
@@ -173,12 +178,16 @@ class Index extends Component {
 	}
 
 	barClick = data => {
+    const { dispatchSearchList } = this.props;
+
     document.querySelector('#toolbar').classList.remove('hide')
 		const range = this.selectedRang.getRangeAt(0);
 		this.selectedRang.removeAllRanges()
 		this.selectedRang.addRange(range)
 
-
+    switch (data.key) {
+      default: dispatchSearchList({ keywrod: this.selectedRang.toString() })
+    }
     // console.log(this.selectedRang)
     console.log(data, this.selectedRang.toString())
     
@@ -192,7 +201,7 @@ class Index extends Component {
     }
     this.editorTimer = setTimeout(() => {
       const chapterList = html2list(chapterListEditor.toRAW(true).blocks)
-      console.log(chapterList)
+      // console.log(chapterList)
       updateEditorData({ chapterListEditor, chapterList, chapterListfForTree: chapterList })
     }, 300)
     // this.props.updateEditorData({ chapterListEditor, chapterList })
@@ -217,7 +226,6 @@ class Index extends Component {
           onChange={this.editorChange}
 				/>
         <div className="test">
-          <Button onClick={this.insertOneData}>插入一条数据</Button>
           <Button onClick={() => {
             console.log(chapterListEditor.toHTML(), chapterListEditor.toRAW(true))
             console.log(this.props.chapterList)
@@ -242,6 +250,9 @@ const mapDispatchToProps = dispatch => {
   return {
     updateEditorData (data) {
       return dispatch(updateEditorData(data))
+    },
+    dispatchSearchList (params) {
+      return dispatch(dispatchSearchList(params))
     },
   };
 };

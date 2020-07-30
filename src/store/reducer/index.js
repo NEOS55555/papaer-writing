@@ -2,6 +2,7 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 // import createHistory from 'history/createBrowserHistory';
 import editor from './editor'
 import com from './com'
+import search from './search'
 import thunkMiddleware from 'redux-thunk'
 // import createSagaMiddleware from 'redux-saga';
 // import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux';
@@ -16,6 +17,7 @@ const store = createStore(
 	combineReducers({
 		editor,
 		com,
+		search,
 	}),
 	(applyMiddleware(...middlewares))
 );
