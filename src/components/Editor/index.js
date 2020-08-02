@@ -1,7 +1,6 @@
 import React, { Component, createRef } from 'react';
 import { connect } from 'react-redux';
 import { Button, Select, Input, message } from 'antd';
-import BraftEditor from 'braft-editor'
 import CodeHighlighter from 'braft-extensions/dist/code-highlighter'
 import ColorPicker from 'braft-extensions/dist/color-picker'
 import Table from 'braft-extensions/dist/table'
@@ -9,10 +8,12 @@ import rangy from 'rangy'
 import $ from 'jquery'
 
 import { updateEditorData } from '@/store/actions'
-import { dispatchSearchList } from '@/store/actions'
+import { dispatchSearchList, toggleWrapperByKey } from '@/store/actions'
 import { html2list, eventBus } from '@/common'
 
 import Toolbar from './Toolbar/index.js'
+
+import BraftEditor from 'braft-editor'
 import { ContentUtils } from 'braft-utils'
 // import { convertRawToEditorState } from 'braft-convert'
 import 'prismjs/components/prism-java'
@@ -63,6 +64,7 @@ const excludeControls = ['emoji', 'font-size', 'line-height', /*'headings',*/ 'h
 class Index extends Component {
 	
 	toolbar = createRef(null);
+  editorInstance = createRef(null)
 	selectedRang = null;
   // <p class="split">---</p>  // 分割线
   insertOneData = (text) => {
@@ -154,9 +156,10 @@ class Index extends Component {
     eventBus.off('insertOneDataToEditor')
   }
   // isShowBar = true;
-	renderEditorTip = ctnNode => {
+	renderEditorTip = editorInstance => {
+    this.editorInstance = editorInstance
     // convertRawToEditorState
-    ctnNode.containerNode.querySelector('.bf-content').appendChild(Toolbar.parentNode)
+    editorInstance.containerNode.querySelector('.bf-content').appendChild(Toolbar.parentNode)
     $(document).on('mouseup.editortip', (e) => {
       if ($(e.target).parents('.editor-container').length > 0) {
         return;
@@ -178,15 +181,16 @@ class Index extends Component {
 	}
 
 	barClick = data => {
-    const { dispatchSearchList } = this.props;
+    const { dispatchSearchList, toggleWrapperByKey } = this.props;
 
     document.querySelector('#toolbar').classList.remove('hide')
 		const range = this.selectedRang.getRangeAt(0);
 		this.selectedRang.removeAllRanges()
 		this.selectedRang.addRange(range)
+    const { key } = data;
 
-    switch (data.key) {
-      default: dispatchSearchList({ keywrod: this.selectedRang.toString() })
+    switch (key) {
+      default: dispatchSearchList({ keywrod: this.selectedRang.toString() });toggleWrapperByKey(key)
     }
     // console.log(this.selectedRang)
     console.log(data, this.selectedRang.toString())
@@ -224,6 +228,7 @@ class Index extends Component {
 					ref={this.renderEditorTip} 
 					value={chapterListEditor} 
           onChange={this.editorChange}
+          // ref={this.editorInstance}
 				/>
         <div className="test">
           <Button onClick={() => {
@@ -232,6 +237,12 @@ class Index extends Component {
             // console.log(BraftEditor.createEditorState(chapterListEditor.toRAW(true)).toHTML())
 
           }}>获取数据</Button>
+          <Button onClick={() => {
+            /*this.setState({
+              chapterListEditor: ContentUtils.insertText(chapterListEditor, 'adasfsg', this.currentSelect)
+            })*/
+            console.log(this.editorInstance)
+          }} >替换数据</Button>
         </div>
 			</div>
 		)
@@ -253,6 +264,9 @@ const mapDispatchToProps = dispatch => {
     },
     dispatchSearchList (params) {
       return dispatch(dispatchSearchList(params))
+    },
+    toggleWrapperByKey (params) {
+      return dispatch(toggleWrapperByKey(params))
     },
   };
 };

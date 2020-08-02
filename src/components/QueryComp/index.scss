@@ -1,8 +1,15 @@
-.search-list-wrapper {
+.query-content {
+	width: 420px;
+	float: right;
+	padding: 10px;
+	height: 100%;
+	overflow: auto;
+}
+.query-list-wrapper {
 	.title {
 		font-weight: bold;
 	}
-	.search-list {
+	.query-list {
 		li {
 			box-shadow: 1px 1px 11px #ccc;
 			padding: 10px;
@@ -39,7 +46,7 @@
 				display: flex;
 				align-items: flex-start;
 				img {
-					float: right;
+					/*float: right;*/
 					width: 120px;
 					height: 80px;
 				}

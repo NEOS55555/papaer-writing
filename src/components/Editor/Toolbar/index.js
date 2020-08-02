@@ -1,32 +1,7 @@
 import React, { Component, createRef } from 'react';
 import ReactDOM from 'react-dom';
+import { editorToolbarList } from '@/constants'
 
-const list = [
-  {
-    key: 'material',
-    name: '找素材'
-  },
-  {
-    key: 'thinking',
-    name: '找思路'
-  },
-  {
-    key: 'anthology',
-    name: '找文集'
-  },
-  {
-    key: 'verse',
-    name: '找金句'
-  },
-  {
-    key: 'translate',
-    name: '改写/英译中'
-  },
-  {
-    key: 'collect',
-    name: '收藏'
-  }
-]
 
 class Toolbar extends Component {
   toolbar = createRef()
@@ -48,7 +23,7 @@ class Toolbar extends Component {
       <div ref={this.toolbar} className="hide" id="toolbar">
         <ul>
           {
-            list.map(it => <li key={it.key} onClick={() => this.state.onClick(it)} >{it.name}</li>)
+            editorToolbarList.map(it => <li key={it.key} onClick={() => this.state.onClick(it)} >{it.name}</li>)
           }
         </ul>
       </div>
