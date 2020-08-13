@@ -32,3 +32,23 @@ $labelWidth: 100px;
 		padding-left: $labelWidth;
 	}
 }
+
+.query-content {
+	width: 420px;
+	min-width: 420px;
+	/*float: right;*/
+	padding: 10px;
+	height: 100%;
+	overflow: auto;
+
+	.query-top {
+		display: flex;
+		flex-direction: row-reverse;
+		padding: 5px 0;
+
+		.close {
+			cursor: pointer;
+			font-size: 16px;
+		}
+	}
+}

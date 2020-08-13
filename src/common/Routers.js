@@ -9,6 +9,7 @@ import Homepage from '@/components/Homepage'
 import EditPage from '@/components/EditPage'
 import Page1 from '@/components/Page1'
 import Page2 from '@/components/Page2'
+import Test from '@/components/Test'
 
 
 
@@ -42,6 +43,9 @@ class Routers extends Component {
 		        </Route>
 		        <Route exact path="/page2">
 							<Page2 />
+		        </Route>
+		        <Route exact path="/Test">
+							<Test />
 		        </Route>
 		        
 		        <Route path="*">

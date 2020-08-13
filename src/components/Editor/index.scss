@@ -44,9 +44,42 @@
 }
 .editor-container {
 	height: 100%;
+	width: 100%;
 	overflow: hidden;
 	position: relative;
+	background: #F8F8FB;
+	.editor-ctn {
+		margin-right: 180px;
+		height: 100%;
+		position: relative;
+		box-shadow: 1px 1px 11px #ccc;
+	}
 }
+.globalbar {
+	position: absolute;
+	left: calc(100% + 20px);
+	bottom: 20px;
+	ul {
+		li {
+			display: block;
+			width: 140px;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			cursor: pointer;
+			border-radius: 4px;
+			box-shadow: 0 4px 10px 0 rgba(0,0,0,.1);
+		    border-radius: 25px;
+		    &:not(:last-child) {
+		    	margin-bottom: 10px;
+		    }
+		    &:hover {
+		    	box-shadow: 0 4px 10px 0 rgba(0,0,0,.5);
+		    }
+		}
+	}
+}
+
 .test {
 	position: absolute;
 	z-index: 5;

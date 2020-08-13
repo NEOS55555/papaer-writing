@@ -1,0 +1,22 @@
+.search-input-wrapper {
+	display: flex;
+}
+.search-input-words-ctn {
+	width: 250px;
+	ul {
+		display: flex;
+		flex-wrap: wrap;
+		li {
+			padding: 2px 5px;
+			border: 1px solid transparent;
+			border-radius: 2px;
+			margin: 3px;
+			cursor: pointer;
+			&:hover {
+			    border-color: #85e0db;
+			    background-color: #f2fbfa;
+			    color: #00aba2;
+			}
+		}
+	}
+}

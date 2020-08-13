@@ -3,6 +3,7 @@ import { Button, Select, Input } from 'antd';
 import Editor from '@/components/Editor'
 import EditLeftNav from '@/components/EditLeftNav'
 import QueryComp from '@/components/QueryComp'
+import GlobalComp from '@/components/GlobalComp'
 // import {  } from '@/store/actions'
 import './index.scss'
 
@@ -15,10 +16,11 @@ class Index extends Component {
 	render () {
 		return (
 			<div className="editpage-wrapper">
-				<EditLeftNav />
+				<QueryComp />
 				<div className="editor-wrapper">
-					<QueryComp />
+					<EditLeftNav />
 					<Editor />
+					<GlobalComp />
 				</div>
 			</div>
 		)

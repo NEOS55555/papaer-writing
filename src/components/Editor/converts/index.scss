@@ -1,0 +1,49 @@
+.correct-btn {
+	cursor: pointer;
+	background-color: #F36C70;
+}
+
+.block-img-ctn {
+	display: inline-block;
+	position: relative;
+	img {
+		max-width: 100%;
+	}
+	&:hover {
+		border-color: #1488F5;
+		.bf-media-toolbar {
+			display: flex;
+		}
+	} 
+	.bf-media-toolbar {
+		display: none;
+	}
+	.img-pre-csize {
+		position: absolute;
+    z-index: 1;
+    background: transparent;
+		border: 1px dashed #00bfff;
+		top: 0;
+		left: 0;
+		z-index: 1;
+	}
+
+
+	.img-size-icon {
+		position: absolute;
+		bottom: 0;
+		width: 16px;
+		height: 16px;
+		z-index: 2;
+
+		&.left {
+			left: 0;
+			cursor: nesw-resize;
+		}
+		&.right {
+			right: 0;
+			cursor: nwse-resize;
+		}
+	}
+
+}

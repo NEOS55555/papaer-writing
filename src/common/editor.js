@@ -1,4 +1,5 @@
-import BraftEditor from 'braft-editor'
+// import BraftEditor from 'braft-editor'
+import { getNewEditor } from '@/components/Editor/converts'
 /*import { SPLIT_LINE, getSplitChildLine } from '@/constants'
 
 function html2split (str='', cur) {
@@ -35,7 +36,8 @@ function html2list (str, h=1) {
 
 const headerType = ['header-one', 'header-two', 'header-three', 'header-four', 'header-five', 'header-six', 'header-seven']
 function transText (blocks) {
-	return BraftEditor.createEditorState({blocks, entityMap: {}}).toHTML()
+	// 这里可是进行转化的地方
+	return getNewEditor({blocks, entityMap: {}}).toHTML()
 
 }
 function transTitle (arr, h) {
@@ -49,7 +51,7 @@ function transTitle (arr, h) {
 	return transText(blocks)
 }
 
-function json2List (arr, h=0) {
+function json2list (arr, h=0) {
 	let indexArr = [], tempArr= [];
 	// 偶数个吗我曹
 	for (let i = 0, len = arr.length; i < len; i++) {
@@ -74,7 +76,7 @@ function json2List (arr, h=0) {
 			expanded: true
 		}
 		if (indexArr[i + 1] - m > 2 ) {
-			obj.children = json2List(arr.slice(n, indexArr[i+1]), h+1)
+			obj.children = json2list(arr.slice(n, indexArr[i+1]), h+1)
 		}
 		tempArr.push(obj)
 	}
@@ -85,7 +87,7 @@ function json2List (arr, h=0) {
 			title,
 			chapter: title,
 			text: transTitle(mar),
-			children: json2List(arr.slice(indexArr[len-1]+1), h+1),
+			children: json2list(arr.slice(indexArr[len-1]+1), h+1),
 			expanded: true
 		})
 	} else {
@@ -113,9 +115,27 @@ function list2html (arr, h=1) {
   return str
 }
 
-const html2list = json2List
+const html2list = json2list
+
+function getKeywordsIndex (str, keywords, arr=[]) {
+  const index = str.indexOf(keywords)
+  if (index !== -1) {
+    let idx = index + (arr[arr.length - 1] || 0) 
+    if (arr.length !== 0) {
+      idx += keywords.length;;
+    }
+    arr.push(idx)
+    let sxd = str.substr(index + keywords.length)
+    if (sxd.indexOf(keywords) !== -1) {
+      return getKeywordsIndex(sxd, keywords, arr)
+    }
+  }
+  return arr
+}
 
 export {
 	list2html,
 	html2list,
+	json2list,
+	getKeywordsIndex,
 }

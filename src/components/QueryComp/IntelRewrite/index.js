@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Spin } from 'antd';
-import { SearchReplace, eventBus } from '@/common'
+import { eventBus } from '@/common'
 import './index.scss'
 
 class Index extends Component {
@@ -15,11 +15,11 @@ class Index extends Component {
 						intelList.map(it => (
 							<li key={it.id}>
 								<div className="text-ctn">
-									<p className="text"><SearchReplace str={it.content} keywords={["罗", '科技', '说']} /></p>
+									<p className="text">{it.content}</p>
 									{it.img && <img src={it.img} alt=""/>}
 								</div>
 								<div className="oper">
-									<Button type="link" onClick={() => eventBus.emit('insertOneDataToEditor', it.content)} >替换原文</Button>
+									<Button type="link" onClick={() => eventBus.emit('replaceDataToEditor', it.content)} >替换原文</Button>
 								</div>
 							</li>
 						))

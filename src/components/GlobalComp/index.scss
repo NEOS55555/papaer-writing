@@ -1,0 +1,29 @@
+.global-query {
+	.title {
+		font-size: 24px;
+	}
+	.exporttype-wrapper {
+
+		.list-wrapper {
+			.list {
+				display: flex;
+		    justify-content: space-around;
+		    flex-wrap: wrap;
+				li {
+					display: flex;
+					align-items: center;
+					position: relative;
+					width: 86px;
+					height: 125px;
+					text-align: center;
+					background-image: url(./cover.png);
+					cursor: pointer;
+
+					&.active {
+						border: 1px solid blue;
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,15 +1,15 @@
 .editpage-wrapper {
 	height: 100%;
-	/*display: flex;*/
-	&::after {
+	display: flex;
+	/* &::after {
 		content: '';
 		display: block;
 		clear: both;
-	}
+	} */
 	.editor-wrapper {
 		overflow: hidden;
 		height: 100%;
-		
+		display: flex;
 		
 	}
 }

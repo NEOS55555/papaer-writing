@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
-import { updateEditorData, updateChapterList, updateEditorEdit } from '@/store/actions'
+import { updateEditorData, updateChapterList, updateEditorEditByList } from '@/store/actions'
 import SortableTree from 'react-sortable-tree';
 import 'react-sortable-tree/style.css'; // This only needs to be imported once in your app
 import './index.scss'
@@ -81,7 +81,7 @@ class Index extends Component {
 	}
 	render () {
 		// const { isSort } =  this.state;
-		const { isSort, chapterListfForTree, updateEditorData, updateChapterList, updateEditorEdit } = this.props;
+		const { isSort, chapterListfForTree, updateEditorData, updateChapterList, updateEditorEditByList } = this.props;
 		return (
 			<div className="edltleft-nav">
 				<p className="title">目录</p>
@@ -99,7 +99,7 @@ class Index extends Component {
 			          	updateEditorData({ chapterListfForTree: treeData })
 			          	// updateChapterList(treeData)
 			          	// 这个修改的时候，会默认执行编辑器的onchange，也就自行改变了数组
-			          	updateEditorEdit(treeData)
+			          	updateEditorEditByList(treeData)
 			          }}
 			        />
 						: <PaintList list={chapterListfForTree} />
@@ -127,8 +127,8 @@ const mapDispatchToProps = dispatch => {
     /*updateChapterList (data) {
       return dispatch(updateChapterList(data))
     },*/
-    updateEditorEdit (data) {
-      return dispatch(updateEditorEdit(data))
+    updateEditorEditByList (data) {
+      return dispatch(updateEditorEditByList(data))
     },
   };
 };

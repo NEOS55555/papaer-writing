@@ -18,3 +18,27 @@
 .paln-box {
 	width: 33%;
 }
+
+.chapter-title-wrapper {
+	padding: 20px;
+	.chapter-title {
+
+	}
+	.chapter-list {
+		/*padding: 10px;*/
+
+		.chapter-item {
+			.chapter-name {
+				display: flex;
+				justify-content: space-between;
+				.refresh-btn {
+					cursor: pointer;
+				}
+			}
+			.show-list {
+				border: 1px solid #ccc;
+				padding: 10px;
+			}
+		}
+	}
+}

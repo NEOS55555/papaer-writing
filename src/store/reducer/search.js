@@ -1,13 +1,19 @@
-import { UPDATE_SEARCH_DATA, SHOW_SEARCH_WRAPPER_BY_KEY } from '../actions';
+import { UPDATE_SEARCH_DATA, SHOW_SEARCH_WRAPPER_BY_KEY, SHOW_GLOBAL_WRAPPER_BY_KEY } from '../actions';
 import { editorToolbarList } from '@/constants'
 
 const searchInit = {}
 editorToolbarList.slice(0, editorToolbarList.length - 2).forEach(it => searchInit[it.key] = false)
-function transkey (key) {
+function transkey (initp={}, key) {
   return {
-    ...searchInit,
+    ...initp,
     [key]:  true
   }
+}
+
+const globalCheckInit = {
+  summary: false,
+  reference: false,
+  exporttype: false,
 }
 
 const initState = {
@@ -16,7 +22,10 @@ const initState = {
   isSearching: false,
   isShowWrapper: {
     ...searchInit   
-  }
+  },
+  isShowGlobalWrapper: {
+    ...globalCheckInit
+  },
 };
 
 export default (state = initState, {type, data}) => {
@@ -31,7 +40,15 @@ export default (state = initState, {type, data}) => {
       return {
         ...state,
         isShowWrapper: {
-          ...transkey(data)
+          ...transkey(searchInit, data)
+        }
+      }
+    case SHOW_GLOBAL_WRAPPER_BY_KEY:
+
+      return {
+        ...state,
+        isShowGlobalWrapper: {
+          ...transkey(globalCheckInit, data)
         }
       }
     
