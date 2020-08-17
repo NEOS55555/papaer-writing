@@ -74,7 +74,6 @@ function getRandSuggestChapters () {
 	for (let i = 0, len = rand(5, 10); i < len; i++) {
 		arr.push({
 			id: id++, 
-			sliceIndex: 0,
 			list: (() => {
 				let arr = [];
 				for (let i = 0, len = rand(10, 20); i < len; i++) {
@@ -90,7 +89,7 @@ function getRandSuggestChapters () {
 function getRandSuggestSubjects () {
 	let arr = [];
 	for (let i = 0, len = rand(5, 8); i < len; i++) {
-		arr.push({id: id++, word: '主题推荐'+rand(5, 1000), score: rand(5, 1000)})
+		arr.push({id: id++, word: '主题推荐'+rand(5, 1000), score: rand(1, 10)})
 	}
 	return arr;
 }
@@ -111,9 +110,9 @@ export const getResearchSelects = (params) => ajaxfn(getRandResearchSelects(para
 export const getSuggestWords = params => ajaxfn(['你阿斯蒂芬啊', '完了呢提', '完了呢提我饿', '佛猎头', rand(1000, 100000)])
 
 // page1
-// 获取提名
+// 获取提名 GenTitles
 export const getGenTitles = params => ajaxfn(['提名你阿斯蒂芬啊', '提名完了呢提', '提名完了呢提我饿', '提名佛猎头', '提名'+rand(1000, 100000)])
-// 获取摘要
+// 获取摘要 GenRemarks
 export const getGenRemarks = params => ajaxfn(['你摘要摘要摘要摘要摘要阿斯蒂芬啊', '完了呢摘要摘要摘要摘要提', '完了摘要摘要摘要摘要呢提我饿', '佛猎摘要摘要摘要摘要头', '摘要摘要摘要摘要'+rand(1000, 100000)])
 
 // page2
@@ -121,8 +120,8 @@ export const getGenRemarks = params => ajaxfn(['你摘要摘要摘要摘要摘�
 // SuggestChapters
 // export const getSuggestChapters = params => ajaxfn(getRandSuggestChapters())
 export const dispatchSuggestChapters = params => dispatch => ajaxfn(getRandSuggestChapters()).then(chapterList => {
-	console.log(chapterList)
-	dispatch(updateHomehData({ chapterList, sbujectList: chapterList.map(it => ({id: it.id, sliceIndex: 0, list: []})) }))
+	// console.log(chapterList)
+	dispatch(updateHomehData({ chapterList: chapterList.map(it => ({...it, sliceIndex: 0})), sbujectList: chapterList.map(it => ({id: it.id, sliceIndex: 0, list: []})) }))
 })
 
 // 编辑器
@@ -194,6 +193,8 @@ export const qualityControl = params => ajaxfn([{check: '手机'}, {check: '科�
 
 // 智能纠错--Correction
 export const getCorrection = params => ajaxfn([{error: '图书馆的发展值得期待', correct: '值得期待图书馆的发展233'}])
+// 参考文献
+export const getReference = params => ajaxfn(['[1]图书馆[J].小学科学,2020(4):34-35.', '[2]朱颖.数字时代高校图书馆定位[J].内蒙古科技与经济,2020(1):140-140.'])
 
 
 export {

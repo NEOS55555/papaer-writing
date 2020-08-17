@@ -61,7 +61,7 @@ class Index extends Component {
 					}
 					
 				</ul>
-				<Button onClick={() => console.log(sbujectList)}>获取数据</Button>
+				{/*<Button onClick={() => console.log(sbujectList)}>获取数据</Button>*/}
 			</div>
 		)
 	}

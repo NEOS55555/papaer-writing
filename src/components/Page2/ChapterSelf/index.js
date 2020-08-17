@@ -6,38 +6,38 @@ import './index.scss'
 const { TextArea } = Input;
 
 class Index extends Component {
-	handleChange = val => {
-		console.log(val)
-	}
-	componentDidMount () {
-
-	}
 	render () {
+		const { chapterList } = this.props;
+		// console.log(chapterList[0].list.filter(itx => itx.checked))
 		return (
-			<div className="self-wrapper">
-				<div className="self-line">
-					<span className="prev-txt">第一章</span><Input />
-				</div>
+			<div className="chapter-title-wrapper self-title-wrapper">
+				<p className="chapter-title">我的文章结构</p>
+				<ul className="chapter-list">
+					{
+						chapterList.map((it, idx) => (
+								<li key={it.id} className="chapter-item">
+									<div className="chapter-name">
+										第{idx+1}章推荐 
+										<span>{it.list.filter(itx => itx.checked).map(itm => itm.text).join(';')}</span>
+									</div>
+								</li>
+							)
+						)
+					}
+					
+				</ul>
 			</div>
 		)
 	}
 }
 
 const mapStateToProps = state => {
-  // const { isSort, chapterListEditor } = state.home
-  // console.log('s')
+  const { chapterList } = state.home
   return {
-    ...state.home
+    chapterList
     // chapterList,
   };
 };
-const mapDispatchToProps = dispatch => {
-  return {
-    updateHomehData (data) {
-      return dispatch(updateHomehData(data))
-    }
-  };
-};
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Index);
+export default connect(mapStateToProps)(Index);

@@ -55,7 +55,7 @@ class Index extends Component {
 	}
 	titleChange = e => this.props.updateHomehData({ title: e.target.value })
 	recommendChange = e => this.props.updateHomehData({ summary: e.target.value })
-	startWrite = () => {
+	nextPage = () => {
 		// console.log(this.props)
 		this.props.history.push('/page2')
 	}
@@ -90,7 +90,7 @@ class Index extends Component {
 					</div>
 				</div>
 				<div className="self-footer">
-					<Button type="primary" onClick={this.startWrite}>下一步</Button>
+					<Button type="primary" onClick={this.nextPage}>下一步</Button>
 				</div>
 			</div>
 		)

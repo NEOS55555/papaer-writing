@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { getGenTitles, getGenRemarks, updateHomehData } from '@/store/actions'
-import { Input } from 'antd';
+import { Input, Button } from 'antd';
 import ChapterTitle from './ChapterTitle'
 import ChapterSubject from './ChapterSubject'
 import ChapterSelf from './ChapterSelf'
+import { withRouter } from "react-router";
 import './index.scss'
 // const { TextArea } = Input;
 
@@ -12,6 +13,9 @@ class Index extends Component {
 	/*handleChange = val => {
 		console.log(val)
 	}*/
+	nextPage = () => {
+		this.props.history.push('/editor')
+	}
 	render () {
 		const { keywords, title } = this.props;
 		return (
@@ -37,15 +41,18 @@ class Index extends Component {
 						<ChapterSelf />
 					</div>
 				</div>
+				<div>
+					<Button type="primary" onClick={this.nextPage} >下一步</Button>
+				</div>
 			</div>
 		)
 	}
 }
 
 const mapStateToProps = state => {
-  // const { keywords, title, summary } = state.home
+  const { keywords, title } = state.home
   return {
-    ...state.home
+    keywords, title
   };
 };
 /*const mapDispatchToProps = dispatch => {
@@ -55,4 +62,4 @@ const mapStateToProps = state => {
     }
   };
 };*/
-export default (connect(mapStateToProps)(Index));
+export default withRouter(connect(mapStateToProps)(Index));

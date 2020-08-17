@@ -210,7 +210,7 @@ class Index extends Component {
 		const barWidth = node.offsetWidth;
 		const barHeight = node.offsetHeight
     const leftMar = $('.edltleft-nav')[0].offsetWidth
-    const leftctnWidth = $('.query-content')[0]?.offsetWidth || 0
+    const leftctnWidth = $('.query-search-ctn')[0]?.offsetWidth || 0
     // 180 左右间距
 		let l = domrect.left - leftMar - leftctnWidth, w = domrect.width;
 		// console.log(barWidth, w, l)

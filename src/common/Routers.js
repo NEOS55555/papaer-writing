@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Homepage from '@/components/Homepage'
 import EditPage from '@/components/EditPage'
-import Page1 from '@/components/Page1'
+import Titlerec from '@/components/Titlerec'
 import Page2 from '@/components/Page2'
 import Test from '@/components/Test'
 
@@ -38,8 +38,8 @@ class Routers extends Component {
 		        <Route exact path="/editor">
 							<EditPage />
 		        </Route>
-		        <Route exact path="/page1">
-							<Page1 />
+		        <Route exact path="/titlerec">
+							<Titlerec />
 		        </Route>
 		        <Route exact path="/page2">
 							<Page2 />

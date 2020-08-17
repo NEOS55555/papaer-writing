@@ -15,7 +15,7 @@ class Index extends Component {
 				{
 					(search || rewrite)
 					&& <Fragment>
-						<div className="query-content">
+						<div className="query-content query-search-ctn">
 							<div className="query-top"><CloseOutlined onClick={() => toggleWrapperByKey()} className="close" /></div>
 							{search && <Search />}
 							{rewrite && <IntelRewrite />}

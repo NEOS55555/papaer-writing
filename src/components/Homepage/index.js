@@ -28,7 +28,7 @@ class Index extends Component {
 
 	startWrite = () => {
 		// console.log(this.props)
-		this.props.history.push('/page1')
+		this.props.history.push('/titlerec')
 	}
 
 	componentDidMount () {
