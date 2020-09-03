@@ -8,7 +8,7 @@ class Index extends Component {
 
   onClick = data => {
     const { chapterListEditor, toggleGlobalWrapperByKey } = this.props;
-    const wholeText = chapterListEditor.toText()
+    // const wholeText = chapterListEditor.toText()
     const { key } = data;
     if (key === globalBar[0].key) {
       return;
